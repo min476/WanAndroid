@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@mipmap/icon_favorite_normal"
+        title="Favorites" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@mipmap/icon_friend_normal"
+        title="Friends" />
+    <tab
+        id="@+id/tab_mine"
+        icon="@mipmap/icon_mine_normal"
+        title="Mine" />
+</tabs>

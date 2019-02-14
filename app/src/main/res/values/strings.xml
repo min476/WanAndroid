@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+
+    <string name="knowledge_hierarchy">Knowledge hierarchy</string>
+    <string name="wx_article">WX article</string>
+    <string name="home_pager">Home pager</string>
+    <string name="navigation">Navigation</string>
+    <string name="project">Project</string>
 </resources>

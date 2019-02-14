@@ -8,4 +8,48 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--占满父类容器-->
+    <style name="allMatch">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--包裹内容宽高-->
+    <style name="allWrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <!--包裹内容高度，宽度占满全屏-->
+    <style name="HwWm">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--包裹内容宽度，高度占满全屏-->
+    <style name="HmWw">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <!--45dp行高-->
+    <style name="line">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--45dp行高-->
+    <style name="linesW">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/color_d7d7d7</item>
+    </style>
+    <!--宽高45dp-->
+    <style name="minHw">
+        <item name="android:minHeight">45dp</item>
+        <item name="android:minWidth">45dp</item>
+    </style>
+
+    <!--设置状态栏为透明色-->
+    <style name="loginStartBar">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fitsSystemWindows">true</item>
+
+    </style>
+
 </resources>
