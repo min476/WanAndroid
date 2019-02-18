@@ -1,11 +1,13 @@
 package com.vera.sample.wanandroid.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.vera.sample.wanandroid.mvp.BaseModel;
@@ -38,6 +40,9 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         view = inflater.inflate(getLayoutId(), container, false);
 
         mContext = getActivity();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
         mPresenter = createPresenter();
 
         this.initToolbar(savedInstanceState);
@@ -70,13 +75,23 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     protected abstract void initData();
 
     public void showToast(String str) {
+        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
     }
 
     public void showLongToast(String str) {
     }
 
     @Override
-    public void showError(String msg) {
+    public void showError() {
+
+    }
+
+    /**
+     * 显示错误信息
+     * @param msg
+     */
+    @Override
+    public void showErrorMsg(String msg) {
         showToast(msg);
     }
 
@@ -110,6 +125,14 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (mPresenter != null) {
+            mPresenter = null;
+        }
     }
 
     /**

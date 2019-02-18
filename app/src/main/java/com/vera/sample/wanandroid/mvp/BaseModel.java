@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 
 public class BaseModel<T> implements Serializable {
+    public static final int SUCCESS = 0;
     private String errorMsg;
     private int errorCode;
     private T data;

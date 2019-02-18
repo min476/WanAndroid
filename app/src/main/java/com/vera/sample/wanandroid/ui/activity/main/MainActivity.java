@@ -1,22 +1,17 @@
 package com.vera.sample.wanandroid.ui.activity.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
+
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vera.sample.wanandroid.R;
-import com.vera.sample.wanandroid.R2;
 import com.vera.sample.wanandroid.app.Constants;
-import com.vera.sample.wanandroid.app.DataManager;
 import com.vera.sample.wanandroid.base.BaseActivity;
 import com.vera.sample.wanandroid.base.BaseFragment;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
@@ -24,7 +19,7 @@ import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.ui.fragment.home.HomeFragment;
 import com.vera.sample.wanandroid.ui.fragment.knowledge.KnowledgeHistoryFragment;
 import com.vera.sample.wanandroid.ui.fragment.navigation.NavigationFragment;
-import com.vera.sample.wanandroid.ui.fragment.official.OfficialAccountsFragment;
+import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsFragment;
 import com.vera.sample.wanandroid.ui.fragment.project.ProjectFragment;
 import com.vera.sample.wanandroid.utils.BottomNavigationViewHelper;
 
@@ -49,7 +44,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     private HomeFragment homeFragment;
     private KnowledgeHistoryFragment knowledgeHistoryFragment; //知识体系
     private NavigationFragment navigationFragment; // 导航
-    private OfficialAccountsFragment officialAccountsFragment; // 公众号
+    private PublicAccountsFragment publicAccountsFragment; // 公众号
     private ProjectFragment projectFragment;// 项目
 
     private int mLastFgIndex;
@@ -104,12 +99,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     private void initFragments() {
         knowledgeHistoryFragment = KnowledgeHistoryFragment.getInstance(null, null);
-        officialAccountsFragment = OfficialAccountsFragment.getInstance(null, null);
+        publicAccountsFragment = PublicAccountsFragment.getInstance(null, null);
         navigationFragment = NavigationFragment.getInstance(null, null);
         projectFragment = ProjectFragment.getInstance(null, null);
 
         mFragments.add(knowledgeHistoryFragment);
-        mFragments.add(officialAccountsFragment);
+        mFragments.add(publicAccountsFragment);
         mFragments.add(navigationFragment);
         mFragments.add(projectFragment);
     }
@@ -161,7 +156,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                     break;
                 case R.id.tab_wx_article:
                     loadPager(getString(R.string.wx_article), 2,
-                            officialAccountsFragment, Constants.TYPE_WX_ARTICLE);
+                            publicAccountsFragment, Constants.TYPE_WX_ARTICLE);
                     break;
                 case R.id.tab_navigation:
                     loadPager(getString(R.string.navigation), 3,

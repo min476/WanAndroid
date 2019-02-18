@@ -69,7 +69,7 @@ public class MainPresenter extends BasePresenter<MainView> implements BaseQuickA
             @Override
             public void onError(String msg) {
                 if (baseView != null) {
-                    baseView.showError(msg);
+                    baseView.showErrorMsg(msg);
                 }
             }
         });

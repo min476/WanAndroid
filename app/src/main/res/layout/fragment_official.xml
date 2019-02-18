@@ -6,13 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.main.MainActivity">
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frag_public_accout_rv"
+        style="@style/allMatch"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="公众号"
         android:textSize="25sp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

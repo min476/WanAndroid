@@ -1,5 +1,6 @@
 package com.vera.sample.wanandroid.api;
 
+import com.vera.sample.wanandroid.bean.BannerBean;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 
@@ -39,5 +40,8 @@ public interface ApiServer {
     @GET("wxarticle/chapters/json")
     Observable<BaseModel<List<PublicAcccountBean>>> getPublicAccountList();
 
+
+    @GET("banner/json")
+    Observable<BaseModel<List<BannerBean>>> getBannerList();
 
 }

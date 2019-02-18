@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.main.MainActivity">
+
+    <!--<com.lzj.gallery.library.views.BannerViewPager-->
+        <!--android:id="@+id/banner_viewpager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:clipChildren="false"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:overScrollMode="never"/>-->
+
 
 
     <TextView
@@ -15,4 +24,4 @@
         android:layout_centerInParent="true"/>
 
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

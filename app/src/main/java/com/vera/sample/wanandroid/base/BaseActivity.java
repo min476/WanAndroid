@@ -1,7 +1,9 @@
 package com.vera.sample.wanandroid.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.vera.sample.wanandroid.coustom.PromptDialog;
 import com.vera.sample.wanandroid.mvp.BaseModel;
@@ -71,14 +73,22 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * @param str
      */
     public void showToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showError() {
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        showToast(errorMsg);
+    }
+
 
     public void showLongToast(String str) {
     }
-    @Override
-    public void showError(String msg) {
-        showToast(msg);
-    }
+
     /**
      * 返回所有状态  除去指定的值  可设置所有（根据需求）
      *

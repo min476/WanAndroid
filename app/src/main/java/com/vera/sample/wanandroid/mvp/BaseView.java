@@ -1,5 +1,7 @@
 package com.vera.sample.wanandroid.mvp;
 
+import android.app.Activity;
+
 /**
  * @descripition:
  *
@@ -17,14 +19,21 @@ public interface BaseView {
      */
 
     void hideLoading();
+
     /**
      * 显示错误信息
-     *
+     */
+    void showError();
+
+    /**
+     * 显示错误信息
      * @param msg
      */
-    void showError(String msg);
+    void showErrorMsg(String msg);
     /**
      * 错误码
      */
     void onErrorCode(BaseModel model);
+
+
 }

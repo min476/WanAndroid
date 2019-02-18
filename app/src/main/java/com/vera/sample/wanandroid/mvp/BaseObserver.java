@@ -47,6 +47,7 @@ public abstract  class BaseObserver<T> extends DisposableObserver<T> {
      * 连接超时
      */
     public static final int CONNECT_TIMEOUT = 1005;
+
     public BaseObserver(BaseView view) {
         this.view = view;
     }

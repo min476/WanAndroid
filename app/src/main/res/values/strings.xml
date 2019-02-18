@@ -6,4 +6,7 @@
     <string name="home_pager">Home pager</string>
     <string name="navigation">Navigation</string>
     <string name="project">Project</string>
+
+    <string name="http_error">network anomaly</string>
+    <string name="unKnown_error">unKnown error</string>
 </resources>
