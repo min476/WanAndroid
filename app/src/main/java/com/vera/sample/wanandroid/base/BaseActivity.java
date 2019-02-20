@@ -3,8 +3,10 @@ package com.vera.sample.wanandroid.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.coustom.PromptDialog;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
@@ -45,6 +47,82 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         this.initToolbar(savedInstanceState);
         this.initData();
     }
+
+
+    /**
+     * 返回一个topbar的id让base处理状态栏的高度
+     * 通过view的高度方式解决
+     *
+     * @return
+     */
+    protected View _topBarAdaptiveByViewVH() {
+        View result = null;
+        int cache = _topBarAdaptiveVH() == -1 ? R.id.comm_topBarSteep : _topBarAdaptiveVH();
+        if (cache > 0) {
+            result = findViewById(cache);
+        }
+        return result;
+    }
+
+    /**
+     * 返回一个topbar的id让base处理状态栏的高度
+     * 通过view的高度方式解决
+     *
+     * @return
+     */
+    protected int _topBarAdaptiveVH() {
+        return -1;
+    }
+
+
+    /**
+     * 自适应状态栏高度
+     */
+    private void _autoAdaptiveTopBar() {
+        /**
+         * 自适应状态栏高度
+         * Padding模式
+         */
+        View tempTopBar = _topBarAdaptiveByViewP();
+        if (tempTopBar != null) {
+//            AppUtils.AutoSteepProssByPadding(tempTopBar);
+        }
+        /**
+         * 自适应状态栏高度
+         * ViewHight模式
+         */
+        View tempTopBarVH = _topBarAdaptiveByViewVH();
+        if (tempTopBarVH != null) {
+//            AppUtils.AutoSteepProssByHeight(tempTopBarVH);
+        }
+    }
+
+    /**
+     * 返回一个topbar的id让base处理状态栏的高度
+     * 通过padding方式解决
+     *
+     * @return
+     */
+    protected View _topBarAdaptiveByViewP() {
+        View result = null;
+        int cache = _topBarAdaptiveP();
+        if (cache > 0) {
+            result = findViewById(cache);
+        }
+        return result;
+    }
+
+
+    /**
+     * 返回一个topbar的id让base处理状态栏的高度
+     * 通过padding方式解决
+     *
+     * @return
+     */
+    protected int _topBarAdaptiveP() {
+        return -1;
+    }
+
     /**
      * 获取布局ID
      *
@@ -65,7 +143,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * 此处设置沉浸式地方
      */
     protected void setStatusBar() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
+//        StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
     }
     /**
      * 封装toast方法（自行去实现）

@@ -25,6 +25,8 @@
     <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -35,7 +37,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".ui.activity.main.MainActivity">
+        <activity android:name=".ui.activity.main.MainActivity"
+            android:theme="@style/ActionBarThemes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,5 +47,8 @@
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity" />
     </application>
+
+    <!--避免第三方的库 minsdk与本地不一致-->
+    <uses-sdk tools:overrideLibrary="com.lzj.gallery.library"/>
 
 </manifest>

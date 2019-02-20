@@ -41,6 +41,10 @@ public interface ApiServer {
     Observable<BaseModel<List<PublicAcccountBean>>> getPublicAccountList();
 
 
+    /**
+     *  获取首页banner
+     * @return
+     */
     @GET("banner/json")
     Observable<BaseModel<List<BannerBean>>> getBannerList();
 

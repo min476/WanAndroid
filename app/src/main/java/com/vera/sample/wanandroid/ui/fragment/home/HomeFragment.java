@@ -3,11 +3,10 @@ package com.vera.sample.wanandroid.ui.fragment.home;
 import android.os.Bundle;
 
 import com.lwj.widget.bannerview.BannerPagerAdapter;
-//import com.lzj.gallery.library.views.BannerViewPager;
+import com.lzj.gallery.library.views.BannerViewPager;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.base.BaseFragment;
-import com.vera.sample.wanandroid.mvp.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +20,12 @@ import butterknife.BindView;
  * @date: 2019/2/13
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment<HomePresenter> implements HomeView {
 
-//    @BindView(R.id.banner_viewpager)
-//    BannerViewPager mViewpager;
+    @BindView(R.id.banner_viewpager)
+    BannerViewPager mViewpager;
 
-//    private List<String> urlList= new ArrayList<>();
+    private List<String> urlList= new ArrayList<>();
 
 
     public static HomeFragment getInstance(boolean param1, String param2) {
@@ -40,8 +39,8 @@ public class HomeFragment extends BaseFragment {
 
 
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(this,getActivity());
     }
 
     @Override
@@ -56,25 +55,27 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mPresenter.getBannerList();
+    }
 
-//        urlList.add("http://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
-//        urlList.add("http://www.wanandroid.com/blogimgs/ab17e8f9-6b79-450b-8079-0f2287eb6f0f.png");
-//        urlList.add("http://www.wanandroid.com/blogimgs/fb0ea461-e00a-482b-814f-4faca5761427.png");
-//        urlList.add("http://www.wanandroid.com/blogimgs/00f83f1d-3c50-439f-b705-54a49fc3d90d.jpg");
-//        mViewpager.initBanner(urlList, true)
-//                .addPageMargin(10, 60)
-//                .addPoint(6)
-//                .addPointBottom(7)
-//                .addStartTimer(5)
-//                .addRoundCorners(13)
-//                .finishConfig()
-//                .addBannerListener(new BannerViewPager.OnClickBannerListener() {
-//                    @Override
-//                    public void onBannerClick(int i) {
-//                        //点击回调
-//                    }
-//                });
-
-
+    /**
+     *  设置banner
+     * @param bannerList
+     */
+    @Override
+    public void setBannerList(List<String> bannerList) {
+        mViewpager.initBanner(bannerList, true)
+                .addPageMargin(10, 60)
+                .addPoint(6)
+                .addPointBottom(7)
+                .addStartTimer(5)
+                .addRoundCorners(13)
+                .finishConfig()
+                .addBannerListener(new BannerViewPager.OnClickBannerListener() {
+                    @Override
+                    public void onBannerClick(int i) {
+                        //点击回调
+                    }
+                });
     }
 }

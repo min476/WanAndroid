@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/color_topBarSteep</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -50,6 +50,41 @@
         <item name="android:background">@color/transparent</item>
         <item name="android:fitsSystemWindows">true</item>
 
+    </style>
+
+    <!--title styl标题栏-->
+    <style name="toolBarStyle">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:minHeight">?attr/actionBarSize</item>
+    <item name="contentInsetStart">0dp</item>
+    <item name="android:background">@color/colorMain</item>
+    </style>
+
+
+    <!--标题栏设置-->
+    <style name="ActionBarThemes" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!--@style/Material.Drawable.Ripple.Touch.Light-->
+    <style name="SubTitles" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">@dimen/h16</item>
+        <!--<item name="rd_cornerRadius">0dp</item>-->
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 标题栏 文字-->
+    <style name="TitleTexts" parent="allMatch">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/h20</item>
+        <item name="android:textColor">@color/colorWhite</item>
     </style>
 
 </resources>

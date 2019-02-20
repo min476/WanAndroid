@@ -2,14 +2,19 @@ package com.vera.sample.wanandroid.ui.activity.main;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.base.BaseActivity;
@@ -22,10 +27,12 @@ import com.vera.sample.wanandroid.ui.fragment.navigation.NavigationFragment;
 import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsFragment;
 import com.vera.sample.wanandroid.ui.fragment.project.ProjectFragment;
 import com.vera.sample.wanandroid.utils.BottomNavigationViewHelper;
+import com.vera.sample.wanandroid.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
@@ -37,6 +44,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     FrameLayout fragmentContent;
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView navigationBar;
+    @BindView(R.id.tv_back)
+    TextView ivBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     List<PublicAcccountBean> publicAcccountBeanList = new ArrayList<>();
 
@@ -59,6 +70,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragments = new ArrayList<>();
+        StatusBarUtil.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.color_topBarSteep), 1f);
         if (savedInstanceState == null) {
             initPager(false, Constants.TYPE_MAIN_PAGER);
         } else {
@@ -74,15 +86,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     protected void initToolbar(Bundle savedInstanceState) {
-
+        ivBack.setVisibility(View.GONE);
+        tvTitle.setText(getString(R.string.home_pager));
     }
 
     @Override
     protected void initData() {
         mPresenter.initAdapter(rvPublicAccout);
         mPresenter.getList();
-
-
     }
 
     private void initPager(boolean isRecreate, int position) {
@@ -143,7 +154,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
      *  初始化导航view
      */
     private void initBottomNavigationView() {
-        BottomNavigationViewHelper.disableShiftMode(navigationBar);
+        navigationBar.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+//        BottomNavigationViewHelper.removeShiftMode(navigationBar);
+
         navigationBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main_pager:
@@ -174,7 +187,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     }
 
     private void loadPager(String title, int position, BaseFragment mFragment, int pagerType) {
-//        mTitleTv.setText(title);
+        tvTitle.setText(title);
         switchFragment(position);
 //        mFragment.reload();
 //        mPresenter.setCurrentPage(pagerType);

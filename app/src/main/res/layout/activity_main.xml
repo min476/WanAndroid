@@ -7,12 +7,18 @@
     android:orientation="vertical"
     tools:context=".ui.activity.main.MainActivity">
 
-
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_appbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/common_title_bar"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/abl_appbar"
        />
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
@@ -21,16 +27,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:visibility="gone"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_white"
+        android:background="@color/colorWhite"
         app:elevation="16dp"
         android:layout_alignParentBottom="true"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_navigation_main" />
+        app:menu="@menu/bottom_navigation_main"
+        app:labelVisibilityMode="labeled"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/act_public_accout_rv"
