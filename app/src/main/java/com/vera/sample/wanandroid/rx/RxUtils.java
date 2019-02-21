@@ -1,5 +1,6 @@
 package com.vera.sample.wanandroid.rx;
 
+import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.rx.exception.OtherException;
 import com.vera.sample.wanandroid.utils.NetUtils;
@@ -48,7 +49,7 @@ public class RxUtils {
                 httpResponseObservable.flatMap((Function<BaseModel<T>, Observable<T>>) baseResponse -> {
             if(baseResponse.getErrcode() == BaseModel.SUCCESS
                     && baseResponse.getData() != null
-                    && NetUtils.isNetworkAvailable()) {
+                    && NetUtils.isNetworkAvailable(MyApplication.getContext())) {
                 return createData(baseResponse.getData());
             } else {
                 return Observable.error(new OtherException());

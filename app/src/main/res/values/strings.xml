@@ -7,6 +7,6 @@
     <string name="navigation">导航</string>
     <string name="project">项目</string>
 
-    <string name="http_error">network anomaly</string>
-    <string name="unKnown_error">unKnown error</string>
+    <string name="http_error">报告小主，网络可能被外星人偷走啦~</string>
+    <string name="unKnown_error">报告小主，出现未知错误</string>
 </resources>

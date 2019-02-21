@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     @Override
     protected void initData() {
         mPresenter.initAdapter(rvPublicAccout);
-        mPresenter.getList();
+//        mPresenter.getList();
     }
 
     private void initPager(boolean isRecreate, int position) {

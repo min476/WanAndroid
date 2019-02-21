@@ -2,6 +2,7 @@ package com.vera.sample.wanandroid.mvp;
 
 import com.google.gson.JsonParseException;
 import com.vera.sample.wanandroid.app.Constants;
+import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.utils.NetUtils;
 
 import org.json.JSONException;
@@ -114,7 +115,7 @@ public abstract  class BaseObserver<T> extends DisposableObserver<T> {
      */
     private void onException(int unknownError, String message) {
         BaseModel model = new BaseModel(message, unknownError);
-        if (!NetUtils.isNetworkAvailable()) {
+        if (!NetUtils.isNetworkAvailable(MyApplication.getContext())) {
             model.setErrcode(NETWORK_ERROR);
             model.setErrmsg("网络不可用，请检查网络连接！");
         }

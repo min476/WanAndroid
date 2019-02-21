@@ -54,26 +54,26 @@ public class MainPresenter extends BasePresenter<MainView> implements BaseQuickA
     /**
      *  获取公众号列表数据
      */
-    public void getList() {
-        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
-            @Override
-            public void onSuccess(Object o) {
-                baseView.onMainSuccess((BaseModel<List<PublicAcccountBean>>) o);
-
-                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
-                publicAcccountBeanList.addAll(publicAcccountCacheList);
-                // 更新适配器
-                publicAccountListAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(String msg) {
-                if (baseView != null) {
-                    baseView.showErrorMsg(msg);
-                }
-            }
-        });
-    }
+//    public void getList() {
+//        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
+//            @Override
+//            public void onSuccess(Object o) {
+//                baseView.onMainSuccess((BaseModel<List<PublicAcccountBean>>) o);
+//
+//                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
+//                publicAcccountBeanList.addAll(publicAcccountCacheList);
+//                // 更新适配器
+//                publicAccountListAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                if (baseView != null) {
+//                    baseView.showErrorMsg(msg);
+//                }
+//            }
+//        });
+//    }
 
     /**
      *  列表点击事件

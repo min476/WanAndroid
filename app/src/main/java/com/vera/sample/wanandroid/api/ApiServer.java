@@ -30,7 +30,7 @@ public interface ApiServer {
 //    @POST("api/Activity/get_activities?")
 //    Observable<BaseModel<List<>>> getApi1(@PartMap Map<String, RequestBody> map);
 
-//    // 获取历史列表
+    // 获取历史列表
 //    @GET("article/list/0/json")
 //    Observable<BaseModel<List<HomeBeans.DatasBean>>> getList();
 

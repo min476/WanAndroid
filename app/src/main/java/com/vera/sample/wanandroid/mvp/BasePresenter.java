@@ -6,7 +6,10 @@ import android.app.Activity;
 import com.vera.sample.wanandroid.api.ApiRetrofit;
 import com.vera.sample.wanandroid.api.ApiServer;
 import com.vera.sample.wanandroid.app.DataManager;
+import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.utils.CommonUtils;
+import com.vera.sample.wanandroid.utils.NetUtils;
 
 import java.util.List;
 
@@ -76,7 +79,15 @@ public class BasePresenter<T extends BaseView> implements IPresenter<T>  {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
-        compositeDisposable.add(disposable);
+        /**
+         * 针对网络操作做一个特殊封装
+         */
+        if (NetUtils.isNetworkAvailable(MyApplication.getContext())) {
+            compositeDisposable.add(disposable);
+        } else {
+            CommonUtils.showMessage(MyApplication.getContext(), "报告小主，网络可能被外星人偷走啦~");
+        }
+
     }
 
     public void removeDisposable() {

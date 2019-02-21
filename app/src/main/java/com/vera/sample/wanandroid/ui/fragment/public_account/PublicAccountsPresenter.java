@@ -64,48 +64,33 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
                         // 更新适配器
                         publicAccountListAdapter.notifyDataSetChanged();
                     }
-
-//                    @Override
-//                    public void onSuccess(List<PublicAcccountBean> data) {
-//                        publicAcccountBeanList.addAll(data);
-//                        // 更新适配器
-//                        publicAccountListAdapter.notifyDataSetChanged();
-//                    }
-//
-//                    @Override
-//                    public void onError(String msg) {
-//                        if (baseView != null) {
-//                            Log.e("public-error", msg);
-//                            baseView.showError(mActivity, msg);
-//                        }
-//                    }
                 })
 
         );
     }
 
 
-    /**
-     * 获取公众号列表数据
-     */
-    public void getPublicList() {
-        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
-            @Override
-            public void onSuccess(Object o) {
-                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
-                publicAcccountBeanList.addAll(publicAcccountCacheList);
-                // 更新适配器
-                publicAccountListAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(String msg) {
-                if (baseView != null) {
-                    baseView.showErrorMsg(msg);
-                }
-            }
-        });
-    }
+//    /**
+//     * 获取公众号列表数据
+//     */
+//    public void getPublicList() {
+//        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
+//            @Override
+//            public void onSuccess(Object o) {
+//                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
+//                publicAcccountBeanList.addAll(publicAcccountCacheList);
+//                // 更新适配器
+//                publicAccountListAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                if (baseView != null) {
+//                    baseView.showErrorMsg(msg);
+//                }
+//            }
+//        });
+//    }
 
     /**
      * 列表点击事件
