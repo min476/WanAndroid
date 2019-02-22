@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     protected void initData() {
         mPresenter.initAdapter(rvPublicAccout);
 //        mPresenter.getList();
+//        this.showLoadingDialog();
     }
 
     private void initPager(boolean isRecreate, int position) {

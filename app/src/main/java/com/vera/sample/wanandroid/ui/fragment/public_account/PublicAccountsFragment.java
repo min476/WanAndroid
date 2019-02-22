@@ -74,8 +74,17 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
     @Override
     protected void initData() {
         mPresenter.initAdapter(recyclerView);
-//        mPresenter.getPublicList();
-        mPresenter.getList();
+        mPresenter.getPublicList();
+
+        initRefresh();
+
+    }
+
+
+    /**
+     *  初始化刷新控件
+     */
+    private void initRefresh() {
         //设置 Header 为 贝塞尔雷达 样式
 //        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true));
         //设置 Header 为 贝塞尔球体 样式
@@ -83,29 +92,33 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
 //        smartRefreshLayout.setRefreshHeader(new StoreHouseHeader(getActivity()));
         // 设置主题色
         smartRefreshLayout.setPrimaryColors(getResources().getColor(R.color.colorMain));
-       //设置 Footer 为 球脉冲 样式
+        //设置 Footer 为 球脉冲 样式
         smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale).setAnimatingColor(getResources().getColor(R.color.colorMain)));
 
 
-        if (NetUtils.isNetworkAvailable(MyApplication.getContext())) {
-            smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-                @Override
-                public void onRefresh(RefreshLayout refreshlayout) {
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                if (NetUtils.isNetworkAvailable(mContext)) {
                     refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                    mPresenter.getList();
+                    mPresenter.getPublicList();
+                } else {
+                    CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
+                    refreshlayout.finishRefresh(false);//传入false表示刷新失败
                 }
-            });
-            smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-                @Override
-                public void onLoadMore(RefreshLayout refreshlayout) {
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                if (NetUtils.isNetworkAvailable(mContext)) {
                     refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                }else {
+                    CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
+                    refreshlayout.finishLoadMore(false);//传入false表示加载失败
                 }
-            });
-        }else {
-            CommonUtils.showMessage(getActivity(),"报告小主，网络可能被外星人偷走啦~");
-        }
-
-
+            }
+        });
 
     }
 }

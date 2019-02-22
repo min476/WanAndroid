@@ -2,6 +2,7 @@ package com.vera.sample.wanandroid.api;
 
 import com.vera.sample.wanandroid.bean.BannerBean;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAccountListBean;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 
 import java.util.List;
@@ -34,18 +35,35 @@ public interface ApiServer {
 //    @GET("article/list/0/json")
 //    Observable<BaseModel<List<HomeBeans.DatasBean>>> getList();
 
-    /**
-     *  获取公众号列表
-     */
-    @GET("wxarticle/chapters/json")
-    Observable<BaseModel<List<PublicAcccountBean>>> getPublicAccountList();
-
 
     /**
      *  获取首页banner
+     *  http://wanandroid.com/banner/json
      * @return
      */
     @GET("banner/json")
     Observable<BaseModel<List<BannerBean>>> getBannerList();
+
+    /**
+     *  获取公众号列表
+     *  http://wanandroid.com/wxarticle/chapters/json
+     *
+     */
+    @GET("wxarticle/chapters/json")
+    Observable<BaseModel<List<PublicAcccountBean>>> getPublicAccountList();
+
+    /**
+     * 获取当前公众号某页的数据
+     * http://wanandroid.com/wxarticle/list/408/1/json
+     * @return
+     */
+    Observable<BaseModel<List<PublicAccountListBean>>> getPublicAccountListData();
+
+
+
+
+
+
+
 
 }

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.coustom.PromptDialog;
+import com.vera.sample.wanandroid.custom.HttpDialog;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
 import com.vera.sample.wanandroid.mvp.BaseView;
@@ -33,6 +34,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract P createPresenter();
     //错误提示框  警告框  成功提示框 加载进度框 （只是提供个案例 可自定义）
     private PromptDialog promptDialog;
+    private HttpDialog httpDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,10 +202,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * 加载中...
      */
     public void showLoadingDialog() {
-        if (promptDialog == null) {
-            promptDialog = new PromptDialog(this);
+//        if (promptDialog == null) {
+//            promptDialog = new PromptDialog(this);
+//        }
+//        promptDialog.showLoading("加载中...",false);
+        if (httpDialog == null){
+            httpDialog = new HttpDialog(this);
         }
-        promptDialog.showLoading("加载中...",false);
+        httpDialog.show();
     }
     @Override
     protected void onDestroy() {

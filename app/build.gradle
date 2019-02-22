@@ -119,8 +119,11 @@ dependencies {
     // 刷新
     implementation 'com.cjj.materialrefeshlayout:library:1.3.0'
 
-    //1.1.0 androidx 版本
+    //刷新控件 1.1.0 androidx 版本
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-3'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-3'
+
+    // 加载框
+    implementation 'com.wang.avi:library:2.1.3'
 
 }

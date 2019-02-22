@@ -53,7 +53,10 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
 
     }
 
-    public void getList() {
+    /**
+     *  获取公众号列表
+     */
+    public void getPublicList() {
         addSubscribe(apiServer.getPublicAccountList()
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
@@ -63,6 +66,7 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
                         publicAcccountBeanList.addAll(publicAcccountBeans);
                         // 更新适配器
                         publicAccountListAdapter.notifyDataSetChanged();
+
                     }
                 })
 
