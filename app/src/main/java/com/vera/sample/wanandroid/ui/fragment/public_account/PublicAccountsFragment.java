@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.scwang.smartrefresh.header.BezierCircleHeader;
 import com.scwang.smartrefresh.header.StoreHouseHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -16,17 +17,21 @@ import com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.vera.sample.wanandroid.R;
+import com.vera.sample.wanandroid.adapter.PublicPageAdapter;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.base.BaseFragment;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.ui.fragment.public_account.classfy.PublicClassfyFragment;
 import com.vera.sample.wanandroid.utils.CommonUtils;
 import com.vera.sample.wanandroid.utils.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 /**
@@ -38,10 +43,18 @@ import butterknife.BindView;
 
 public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter> implements PublicAccountsView {
 
-    @BindView(R.id.frag_public_accout_rv)
-    RecyclerView recyclerView;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout smartRefreshLayout;
+//    @BindView(R.id.frag_public_accout_rv)
+//    RecyclerView recyclerView;
+//    @BindView(R.id.refreshLayout)
+//    SmartRefreshLayout smartRefreshLayout;
+    @BindView(R.id.public_account_tl)
+    SlidingTabLayout slidingTabLayout;
+    @BindView(R.id.public_account_vp)
+    ViewPager publicAccountVp;
+
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
+    private PublicPageAdapter publicPageAdapter ;
+
 
 
     List<PublicAcccountBean> publicAcccountBeanList = new ArrayList<>();
@@ -73,52 +86,29 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
 
     @Override
     protected void initData() {
-        mPresenter.initAdapter(recyclerView);
+//        mPresenter.initAdapter(recyclerView);
         mPresenter.getPublicList();
 
-        initRefresh();
-
     }
-
 
     /**
-     *  初始化刷新控件
+     *  设置公众号分类tab
+     * @param publicAccountTitles
      */
-    private void initRefresh() {
-        //设置 Header 为 贝塞尔雷达 样式
-//        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(getActivity()).setEnableHorizontalDrag(true));
-        //设置 Header 为 贝塞尔球体 样式
-        smartRefreshLayout.setRefreshHeader(new BezierCircleHeader(getActivity()));
-//        smartRefreshLayout.setRefreshHeader(new StoreHouseHeader(getActivity()));
-        // 设置主题色
-        smartRefreshLayout.setPrimaryColors(getResources().getColor(R.color.colorMain));
-        //设置 Footer 为 球脉冲 样式
-        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale).setAnimatingColor(getResources().getColor(R.color.colorMain)));
+    @Override
+    public void setPublicAccountTab(List<String> publicAccountTitles) {
+        for (String title : publicAccountTitles) {
+            mFragments.add(PublicClassfyFragment.getInstance(title));
+        }
 
+        publicPageAdapter = new PublicPageAdapter(getFragmentManager(),mFragments,publicAccountTitles);
+        publicAccountVp.setAdapter(publicPageAdapter);
 
-        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                if (NetUtils.isNetworkAvailable(mContext)) {
-                    refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                    mPresenter.getPublicList();
-                } else {
-                    CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
-                    refreshlayout.finishRefresh(false);//传入false表示刷新失败
-                }
-            }
-        });
-        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshlayout) {
-                if (NetUtils.isNetworkAvailable(mContext)) {
-                    refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
-                }else {
-                    CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
-                    refreshlayout.finishLoadMore(false);//传入false表示加载失败
-                }
-            }
-        });
+        // 设置 ViewPager
+        slidingTabLayout.setViewPager(publicAccountVp);
 
     }
+
+
+
 }

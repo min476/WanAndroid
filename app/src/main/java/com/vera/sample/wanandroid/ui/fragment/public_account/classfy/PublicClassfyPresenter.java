@@ -1,4 +1,4 @@
-package com.vera.sample.wanandroid.ui.fragment.public_account;
+package com.vera.sample.wanandroid.ui.fragment.public_account.classfy;
 
 import android.app.Activity;
 import android.view.View;
@@ -10,11 +10,11 @@ import com.vera.sample.wanandroid.adapter.PublicAccountListAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
 import com.vera.sample.wanandroid.bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.custom.HttpDialog;
-import com.vera.sample.wanandroid.mvp.BaseModel;
-import com.vera.sample.wanandroid.mvp.BaseObserver;
 import com.vera.sample.wanandroid.mvp.BaseObservers;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
+import com.vera.sample.wanandroid.mvp.BaseView;
 import com.vera.sample.wanandroid.rx.RxUtils;
+import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +24,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * File descripition: 公众号
+ * File descripition: 公众号子分类
  *
  * @author: Vera
- * @date: 2019/2/14
+ * @date: 2019/2/25
  */
 
-public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> implements BaseQuickAdapter.OnItemClickListener  {
+public class PublicClassfyPresenter extends BasePresenter<PublicClassfyView> implements BaseQuickAdapter.OnItemClickListener {
 
     private DataManager mDataManager;
 
@@ -41,7 +41,7 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
 
 
 
-    public PublicAccountsPresenter(PublicAccountsView baseView, Activity activity) {
+    public PublicClassfyPresenter(PublicClassfyView baseView, Activity activity) {
         super(baseView, activity);
         httpDialog = new HttpDialog(mActivity);
 
@@ -59,7 +59,7 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
     }
 
     /**
-     *  获取公众号列表
+     *  获取公众号子类列表
      */
     public void getPublicList() {
         httpDialog.show();
@@ -69,17 +69,10 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
                 .subscribeWith(new BaseObservers<List<PublicAcccountBean>>(baseView) {
                     @Override
                     public void onNext(List<PublicAcccountBean> publicAcccountBeans) {
-//                        publicAcccountBeanList.addAll(publicAcccountBeans);
-//                        // 更新适配器
-//                        publicAccountListAdapter.notifyDataSetChanged();
+                        publicAcccountBeanList.addAll(publicAcccountBeans);
+                        // 更新适配器
+                        publicAccountListAdapter.notifyDataSetChanged();
                         httpDialog.dismiss();
-
-
-                        // 获取公众号的分类tab
-                        for (int i = 0; i < publicAcccountBeans.size(); i++) {
-                            publicAcccountCacheList.add(publicAcccountBeans.get(i).getName());
-                        }
-                        baseView.setPublicAccountTab(publicAcccountCacheList);
 
                     }
                     @Override
@@ -92,28 +85,6 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
         );
     }
 
-
-//    /**
-//     * 获取公众号列表数据
-//     */
-//    public void getPublicList() {
-//        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
-//            @Override
-//            public void onSuccess(Object o) {
-//                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
-//                publicAcccountBeanList.addAll(publicAcccountCacheList);
-//                // 更新适配器
-//                publicAccountListAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onError(String msg) {
-//                if (baseView != null) {
-//                    baseView.showErrorMsg(msg);
-//                }
-//            }
-//        });
-//    }
 
     /**
      * 列表点击事件

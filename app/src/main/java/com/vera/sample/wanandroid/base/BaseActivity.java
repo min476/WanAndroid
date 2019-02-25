@@ -191,7 +191,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         closeLoadingDialog();
     }
     /**
-     * 进度款消失
+     * 加载框消失
      */
     public void closeLoadingDialog() {
         if (promptDialog != null) {

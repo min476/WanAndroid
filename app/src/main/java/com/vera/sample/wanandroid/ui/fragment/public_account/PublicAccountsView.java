@@ -4,6 +4,8 @@ package com.vera.sample.wanandroid.ui.fragment.public_account;
 
 import com.vera.sample.wanandroid.mvp.BaseView;
 
+import java.util.List;
+
 /**
  * File descripition: 公众号
  *
@@ -13,4 +15,6 @@ import com.vera.sample.wanandroid.mvp.BaseView;
 
 public interface PublicAccountsView extends BaseView {
 //    void onMainSuccess(BaseModel<List<HomeBeans.DatasBean>> list);
+
+    void setPublicAccountTab(List<String> publicAccountTitles);
 }

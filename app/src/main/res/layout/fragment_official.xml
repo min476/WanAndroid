@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.main.MainActivity">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/frag_public_accout_rv"
-            style="@style/allMatch" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/public_account_tl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#EEEEEE"
+        tl:tl_divider_color="#1A000000"
+        tl:tl_divider_padding="10dp"
+        tl:tl_divider_width="1dp"
+        tl:tl_indicator_color="@color/colorMain"
+        tl:tl_indicator_height="1.5dp"
+        tl:tl_indicator_width_equal_title="true"
+        tl:tl_tab_padding="22dp"
+        tl:tl_tab_space_equal="true"
+        tl:tl_textSelectColor="@color/colorMain"
+        tl:tl_textUnselectColor="#66000000"
+        tl:tl_underline_color="#1A000000"
+        tl:tl_underline_height="1dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/public_account_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/public_account_tl">
+
+    </androidx.viewpager.widget.ViewPager>
 
 
 </RelativeLayout>
