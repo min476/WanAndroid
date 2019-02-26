@@ -8,13 +8,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.adapter.PublicAccountListAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.custom.HttpDialog;
-import com.vera.sample.wanandroid.mvp.BaseModel;
-import com.vera.sample.wanandroid.mvp.BaseObserver;
 import com.vera.sample.wanandroid.mvp.BaseObservers;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
 import com.vera.sample.wanandroid.rx.RxUtils;
+import com.vera.sample.wanandroid.ui.activity.webview.WebLinkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,14 +71,9 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
 //                        publicAcccountBeanList.addAll(publicAcccountBeans);
 //                        // 更新适配器
 //                        publicAccountListAdapter.notifyDataSetChanged();
+
+                        baseView.setPublicAccountTab(publicAcccountBeans);
                         httpDialog.dismiss();
-
-
-                        // 获取公众号的分类tab
-                        for (int i = 0; i < publicAcccountBeans.size(); i++) {
-                            publicAcccountCacheList.add(publicAcccountBeans.get(i).getName());
-                        }
-                        baseView.setPublicAccountTab(publicAcccountCacheList);
 
                     }
                     @Override
@@ -124,7 +118,10 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
      */
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Toast.makeText(mActivity, publicAccountListAdapter.getItem(position).getName(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(mActivity, publicAccountListAdapter.getItem(position).getName(), Toast.LENGTH_LONG).show();
+
+
+
     }
 
 }

@@ -7,7 +7,7 @@ import com.vera.sample.wanandroid.api.ApiRetrofit;
 import com.vera.sample.wanandroid.api.ApiServer;
 import com.vera.sample.wanandroid.app.DataManager;
 import com.vera.sample.wanandroid.app.MyApplication;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.utils.CommonUtils;
 import com.vera.sample.wanandroid.utils.NetUtils;
 

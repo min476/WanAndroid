@@ -2,10 +2,9 @@ package com.vera.sample.wanandroid.ui.activity.main;
 
 
 
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.mvp.BaseView;
-import com.vera.sample.wanandroid.mvp.MModel;
 
 import java.util.List;
 

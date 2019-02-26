@@ -38,7 +38,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                             }
 
                         }
-                        baseView.setBannerList(bannerPathList);
+                        baseView.setBannerList(bannerPathList,bannerBeans);
                     }
                 }));
     }

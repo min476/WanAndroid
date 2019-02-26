@@ -3,7 +3,7 @@ package com.vera.sample.wanandroid.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.vera.sample.wanandroid.R;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 
 /*
- * Description: 公众号列表适配器
+ * Description: 公众号分类适配器
  *
  * Author: Vera
  * Date: 2019/2/11

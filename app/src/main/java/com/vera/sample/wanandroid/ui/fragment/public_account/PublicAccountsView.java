@@ -2,6 +2,7 @@ package com.vera.sample.wanandroid.ui.fragment.public_account;
 
 
 
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.mvp.BaseView;
 
 import java.util.List;
@@ -16,5 +17,5 @@ import java.util.List;
 public interface PublicAccountsView extends BaseView {
 //    void onMainSuccess(BaseModel<List<HomeBeans.DatasBean>> list);
 
-    void setPublicAccountTab(List<String> publicAccountTitles);
+    void setPublicAccountTab(List<PublicAcccountBean> publicAcccountBeans );
 }

@@ -9,4 +9,8 @@
 
     <string name="http_error">报告小主，网络可能被外星人偷走啦~</string>
     <string name="unKnown_error">报告小主，出现未知错误</string>
+
+    <string name="minute">分钟</string>
+    <string name="hour">小时</string>
+    <string name="one_day">1天</string>
 </resources>

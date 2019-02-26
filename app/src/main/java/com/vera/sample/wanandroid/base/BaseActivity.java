@@ -4,17 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.vera.sample.wanandroid.R;
+import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.coustom.PromptDialog;
 import com.vera.sample.wanandroid.custom.HttpDialog;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
 import com.vera.sample.wanandroid.mvp.BaseView;
+import com.vera.sample.wanandroid.utils.AppManager;
 import com.vera.sample.wanandroid.utils.StatusBarUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import butterknife.ButterKnife;
 
 import static com.vera.sample.wanandroid.mvp.BaseObserver.NETWORK_ERROR;
@@ -31,6 +35,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected final String TAG = this.getClass().getSimpleName();
     public Context mContext;
     protected P mPresenter;
+    public AppManager appManager;
     protected abstract P createPresenter();
     //错误提示框  警告框  成功提示框 加载进度框 （只是提供个案例 可自定义）
     private PromptDialog promptDialog;
@@ -41,13 +46,27 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         mContext = this;
         setContentView(getLayoutId());
         mPresenter = createPresenter();
+        // 判断当前的Activity是堆栈中是否存在
+        appManager = AppManager.getAppManager();
+        appManager.addActivity(this);
 
 //        setStatusBar();
         //绑定activity
         ButterKnife.bind( this ) ;
-
         this.initToolbar(savedInstanceState);
+        /**
+         * 自适应状态栏高度
+         */
+        _autoAdaptiveTopBar();
+        /**
+         * 自动转接back的事件
+         */
+        _backProce();
+        // 设置状态栏颜色
+        StatusBarUtil.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.color_topBarSteep), 1f);
+
         this.initData();
+
     }
 
 
@@ -123,6 +142,35 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      */
     protected int _topBarAdaptiveP() {
         return -1;
+    }
+
+    /**
+     * 自动转接back的事件
+     */
+    protected void _backProce() {
+        View temp = findViewById(R.id.tv_back);
+        if (temp != null) {
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back();
+                    try {
+                        //隐藏键盘
+                        ((InputMethodManager) MyApplication.getContext().getSystemService(
+                                Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
+                                getCurrentFocus().getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+
+    protected void back() {
+
+        appManager.finishActivity();
     }
 
     /**

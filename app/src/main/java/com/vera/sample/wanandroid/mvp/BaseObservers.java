@@ -63,7 +63,7 @@ public abstract class BaseObservers<T> extends ResourceObserver<T> {
         } else {
             // 检查网络是否连接
             if (NetUtils.isNetworkAvailable(MyApplication.getContext())) {
-                mView.showErrorMsg(MyApplication.getInstance().getString(R.string.unKnown_error));
+                mView.showErrorMsg("报告小主，出现未知错误");
                 Log.e("onError:", e.toString());
             } else {
                 CommonUtils.showMessage(MyApplication.getContext(), "报告小主，网络可能被外星人偷走啦~");

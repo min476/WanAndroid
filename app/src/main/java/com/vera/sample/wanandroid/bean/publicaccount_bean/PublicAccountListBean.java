@@ -31,6 +31,16 @@ public class PublicAccountListBean {
     public PublicAccountListBean() {
     }
 
+    public PublicAccountListBean(int curPage, int offset, boolean over, int pageCount, int size, int total, List<DatasBean> datas) {
+        this.curPage = curPage;
+        this.offset = offset;
+        this.over = over;
+        this.pageCount = pageCount;
+        this.size = size;
+        this.total = total;
+        this.datas = datas;
+    }
+
     public int getCurPage() {
         return curPage;
     }

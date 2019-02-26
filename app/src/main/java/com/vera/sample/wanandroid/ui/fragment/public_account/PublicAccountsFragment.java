@@ -2,35 +2,18 @@ package com.vera.sample.wanandroid.ui.fragment.public_account;
 
 import android.os.Bundle;
 
-import com.cjj.MaterialRefreshLayout;
-import com.cjj.MaterialRefreshListener;
 import com.flyco.tablayout.SlidingTabLayout;
-import com.scwang.smartrefresh.header.BezierCircleHeader;
-import com.scwang.smartrefresh.header.StoreHouseHeader;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.scwang.smartrefresh.layout.footer.FalsifyFooter;
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
-import com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.adapter.PublicPageAdapter;
 import com.vera.sample.wanandroid.app.Constants;
-import com.vera.sample.wanandroid.app.MyApplication;
 import com.vera.sample.wanandroid.base.BaseFragment;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.ui.fragment.public_account.classfy.PublicClassfyFragment;
-import com.vera.sample.wanandroid.utils.CommonUtils;
-import com.vera.sample.wanandroid.utils.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
@@ -54,6 +37,7 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
 
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private PublicPageAdapter publicPageAdapter ;
+    private List<String> publicAcccountTitleCacheList = new ArrayList<>();;
 
 
 
@@ -93,15 +77,22 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
 
     /**
      *  设置公众号分类tab
-     * @param publicAccountTitles
+     * @param publicAccountData
      */
     @Override
-    public void setPublicAccountTab(List<String> publicAccountTitles) {
-        for (String title : publicAccountTitles) {
-            mFragments.add(PublicClassfyFragment.getInstance(title));
+    public void setPublicAccountTab(List<PublicAcccountBean> publicAccountData) {
+
+        // 传递id 与公众号名称到子类frg
+        for (int i = 0; i <publicAccountData.size() ; i++) {
+            mFragments.add(PublicClassfyFragment.getInstance(publicAccountData.get(i).getName(),publicAccountData.get(i).getId()));
+//            break;
         }
 
-        publicPageAdapter = new PublicPageAdapter(getFragmentManager(),mFragments,publicAccountTitles);
+        // 公众号的分类tab
+        for (int i = 0; i < publicAccountData.size(); i++) {
+            publicAcccountTitleCacheList.add(publicAccountData.get(i).getName());
+        }
+        publicPageAdapter = new PublicPageAdapter(getFragmentManager(),mFragments,publicAcccountTitleCacheList);
         publicAccountVp.setAdapter(publicPageAdapter);
 
         // 设置 ViewPager

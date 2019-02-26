@@ -26,7 +26,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
-
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -37,7 +36,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".ui.activity.main.MainActivity"
+        <activity
+            android:name=".ui.activity.main.MainActivity"
             android:theme="@style/ActionBarThemes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,10 +45,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--登录-->
         <activity android:name=".ui.activity.login.LoginActivity" />
+        <!--webview-->
+        <activity android:name=".ui.activity.webview.WebLinkActivity"
+            android:theme="@style/Transparent"/>
+        <activity android:name=".ui.activity.webview.CommonWebActivity" />
     </application>
 
     <!--避免第三方的库 minsdk与本地不一致-->
-    <uses-sdk tools:overrideLibrary="com.lzj.gallery.library"/>
+    <uses-sdk tools:overrideLibrary="com.lzj.gallery.library" />
 
 </manifest>

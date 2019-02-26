@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -19,20 +18,18 @@ import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.base.BaseActivity;
 import com.vera.sample.wanandroid.base.BaseFragment;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.ui.fragment.home.HomeFragment;
 import com.vera.sample.wanandroid.ui.fragment.knowledge.KnowledgeHistoryFragment;
 import com.vera.sample.wanandroid.ui.fragment.navigation.NavigationFragment;
 import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsFragment;
 import com.vera.sample.wanandroid.ui.fragment.project.ProjectFragment;
-import com.vera.sample.wanandroid.utils.BottomNavigationViewHelper;
 import com.vera.sample.wanandroid.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindInt;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
@@ -70,7 +67,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragments = new ArrayList<>();
-        StatusBarUtil.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.color_topBarSteep), 1f);
+
         if (savedInstanceState == null) {
             initPager(false, Constants.TYPE_MAIN_PAGER);
         } else {

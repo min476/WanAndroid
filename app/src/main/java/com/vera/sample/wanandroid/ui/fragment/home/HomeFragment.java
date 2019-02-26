@@ -7,6 +7,8 @@ import com.lzj.gallery.library.views.BannerViewPager;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.base.BaseFragment;
+import com.vera.sample.wanandroid.bean.BannerBean;
+import com.vera.sample.wanandroid.ui.activity.webview.WebLinkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
      * @param bannerList
      */
     @Override
-    public void setBannerList(List<String> bannerList) {
+    public void setBannerList(List<String> bannerList,List<BannerBean> bannerBeans) {
         mViewpager.initBanner(bannerList, true)
                 .addPageMargin(10, 60)
                 .addPoint(6)
@@ -74,7 +76,13 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
                 .addBannerListener(new BannerViewPager.OnClickBannerListener() {
                     @Override
                     public void onBannerClick(int i) {
+                        //
+
                         //点击回调
+                        for (int j = 0; j < bannerBeans.size(); j++) {
+                            WebLinkActivity.load(mContext,bannerBeans.get(j).getTitle(),bannerBeans.get(j).getUrl());
+                        }
+
                     }
                 });
     }

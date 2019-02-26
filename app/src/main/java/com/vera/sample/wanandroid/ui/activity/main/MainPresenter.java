@@ -11,9 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.adapter.PublicAccountListAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
-import com.vera.sample.wanandroid.bean.PublicAcccountBean;
-import com.vera.sample.wanandroid.mvp.BaseModel;
-import com.vera.sample.wanandroid.mvp.BaseObserver;
+import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
 
 import java.util.ArrayList;

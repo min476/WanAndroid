@@ -1,5 +1,7 @@
 package com.vera.sample.wanandroid.api;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.vera.sample.wanandroid.app.Constants;
@@ -89,9 +91,9 @@ public class ApiRetrofit {
             MediaType mediaType = response.body().contentType();
             String content = response.body().string();
 //            analyzeJson("data", "", content);
-            Logger.e(TAG, "----------Request Start----------------");
+            Log.e(TAG, "----------Request Start----------------");
             printParams(request.body());
-            Logger.e(TAG, "| " + request.toString() + "===========" + request.headers().toString());
+            Log.e(TAG, "| " + request.toString() + "===========" + request.headers().toString());
             Logger.json(content);
             Logger.e(content);
             Logger.e(TAG, "----------Request End:" + duration + "毫秒----------");

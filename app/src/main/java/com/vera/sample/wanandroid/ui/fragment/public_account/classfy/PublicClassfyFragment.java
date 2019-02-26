@@ -34,16 +34,18 @@ import butterknife.BindView;
 public class PublicClassfyFragment extends BaseFragment<PublicClassfyPresenter> implements PublicClassfyView {
     private String mTitle;
     private int publicId;
+    private int page= 1;
 
     @BindView(R.id.frag_public_accout_rv)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout smartRefreshLayout;
 
-    public static PublicClassfyFragment getInstance(String title) {//,int id
+
+    public static PublicClassfyFragment getInstance(String title,int id) {//,int id
         PublicClassfyFragment sf = new PublicClassfyFragment();
         sf.mTitle = title;
-//        sf.publicId = id;
+        sf.publicId = id;
         return sf;
     }
 
@@ -64,9 +66,10 @@ public class PublicClassfyFragment extends BaseFragment<PublicClassfyPresenter> 
 
     @Override
     protected void initData() {
-        mPresenter.initAdapter(recyclerView);
-        mPresenter.getPublicList();
         initRefresh();
+        mPresenter.initAdapter(recyclerView);
+        mPresenter.getPublicClassfyList(publicId,page);
+
 
     }
 
@@ -88,9 +91,11 @@ public class PublicClassfyFragment extends BaseFragment<PublicClassfyPresenter> 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
+                // 刷新
                 if (NetUtils.isNetworkAvailable(mContext)) {
+                    page = 1;
                     refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                    mPresenter.getPublicList();
+                    mPresenter.getPublicClassfyList(publicId,page);
                 } else {
                     CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
                     refreshlayout.finishRefresh(false);//传入false表示刷新失败
@@ -100,8 +105,11 @@ public class PublicClassfyFragment extends BaseFragment<PublicClassfyPresenter> 
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshlayout) {
+                // 加载更多
                 if (NetUtils.isNetworkAvailable(mContext)) {
                     refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                    page++;
+                    mPresenter.getPublicClassfyList(publicId,page);
                 }else {
                     CommonUtils.showMessage(getActivity(), "报告小主，网络可能被外星人偷走啦~");
                     refreshlayout.finishLoadMore(false);//传入false表示加载失败
