@@ -4,6 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="line">0.5dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="h5">5dp</dimen>
     <dimen name="h9">9.0sp</dimen>
     <dimen name="h10">10.0sp</dimen>
     <dimen name="h11">11.0sp</dimen>
@@ -22,7 +24,9 @@
     <dimen name="h23">23.0sp</dimen>
     <dimen name="h35">35.0sp</dimen>
     <dimen name="h90">90.0sp</dimen>
-    <dimen name="h1">1px</dimen>
+    <dimen name="h48">48sp</dimen>
+
+    <dimen name="px_1">1px</dimen>
 
     <dimen name="item_height">90dp</dimen>
 </resources>

@@ -13,7 +13,7 @@ import java.util.List;
  * @date: 2019/2/25
  */
 
-public interface PublicClassfyView extends BaseView {
+public interface PublicClassifyView extends BaseView {
 
 //    void setPublicAccountTab(List<String> publicAccountTitles);
 }

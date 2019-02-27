@@ -17,6 +17,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -43,9 +44,13 @@ public class ApiRetrofit {
 
     public ApiRetrofit() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        Interceptor logInterceptor;
+        //处理网络请求的日志拦截输出
+
+        logInterceptor = new HttpLoggingInterceptor(new HttpLog()).setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClientBuilder
 //                .cookieJar(new CookieManger(App.getContext())) //这块是添加的管理cookie方法
-                .addInterceptor(interceptor)//日志拦截
+                .addInterceptor(logInterceptor)//日志拦截
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -75,6 +80,18 @@ public class ApiRetrofit {
     public ApiServer getApiService() {
         return apiServer;
     }
+
+    /**
+     * 定义拦截器中的网络日志工具
+     */
+    public class HttpLog implements HttpLoggingInterceptor.Logger {
+        @Override
+        public void log(String message) {
+            Log.e("HttpLogInfo", message);
+        }
+
+    }
+
 
     /**
      * 请求访问quest

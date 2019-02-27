@@ -20,6 +20,7 @@
         >
 
      <ImageView
+         android:id="@+id/item_public_account_bg"
          android:layout_width="match_parent"
          android:layout_height="115dp"
          android:background="@mipmap/public_item_bg"

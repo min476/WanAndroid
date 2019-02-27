@@ -2,7 +2,6 @@ package com.vera.sample.wanandroid.ui.activity.main;
 
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,9 +22,8 @@ import com.vera.sample.wanandroid.mvp.BaseModel;
 import com.vera.sample.wanandroid.ui.fragment.home.HomeFragment;
 import com.vera.sample.wanandroid.ui.fragment.knowledge.KnowledgeHistoryFragment;
 import com.vera.sample.wanandroid.ui.fragment.navigation.NavigationFragment;
-import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsFragment;
 import com.vera.sample.wanandroid.ui.fragment.project.ProjectFragment;
-import com.vera.sample.wanandroid.utils.StatusBarUtil;
+import com.vera.sample.wanandroid.ui.fragment.public_account.PublicAccountsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

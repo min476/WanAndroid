@@ -1,13 +1,16 @@
-package com.vera.sample.wanandroid.ui.fragment.public_account;
+package com.vera.sample.wanandroid.ui.fragment.project;
 
 import android.app.Activity;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vera.sample.wanandroid.R;
+import com.vera.sample.wanandroid.adapter.project.ProjectClassifyAdapter;
 import com.vera.sample.wanandroid.adapter.public_account.PublicAccountListAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
-import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
+import com.vera.sample.wanandroid.bean.FeedArticleBean;
+import com.vera.sample.wanandroid.bean.project.ProjectClassifyBean;
+import com.vera.sample.wanandroid.bean.project.ProjectListBean;
 import com.vera.sample.wanandroid.custom.HttpDialog;
 import com.vera.sample.wanandroid.mvp.BaseObservers;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
@@ -27,50 +30,50 @@ import androidx.recyclerview.widget.RecyclerView;
  * @date: 2019/2/14
  */
 
-public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> implements BaseQuickAdapter.OnItemClickListener  {
+public class ProjectPresenter extends BasePresenter<ProjectView> implements BaseQuickAdapter.OnItemClickListener  {
 
     private DataManager mDataManager;
 
-    private PublicAccountListAdapter publicAccountListAdapter;
-    private List<PublicAcccountBean> publicAcccountBeanList = new ArrayList<>();
+    private ProjectClassifyAdapter projectClassifyAdapter;
+    private List<ProjectClassifyBean> projectClassifyBeans = new ArrayList<>();
     private HttpDialog httpDialog;
     private List<String> publicAcccountCacheList = new ArrayList<>();;
 
 
 
-    public PublicAccountsPresenter(PublicAccountsView baseView, Activity activity) {
+    public ProjectPresenter(ProjectView baseView, Activity activity) {
         super(baseView, activity);
         httpDialog = new HttpDialog(mActivity);
 
     }
 
     public void initAdapter(RecyclerView recyclerView) {
-        publicAccountListAdapter = new PublicAccountListAdapter(R.layout.item_public_account, publicAcccountBeanList);
+        projectClassifyAdapter = new ProjectClassifyAdapter(R.layout.item_public_account, projectClassifyBeans);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(publicAccountListAdapter);
+        recyclerView.setAdapter(projectClassifyAdapter);
         // 设置点击事件
-        publicAccountListAdapter.setOnItemClickListener(this);
+        projectClassifyAdapter.setOnItemClickListener(this);
 
     }
 
     /**
-     *  获取公众号列表
+     *  获取项目列表
      */
-    public void getPublicList() {
+    public void getProjectList() {
         httpDialog.show();
-        addSubscribe(apiServer.getPublicAccountList()
+        addSubscribe(apiServer.getProjectClassifyData()
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
-                .subscribeWith(new BaseObservers<List<PublicAcccountBean>>(baseView) {
+                .subscribeWith(new BaseObservers<List<ProjectClassifyBean>>(baseView) {
                     @Override
-                    public void onNext(List<PublicAcccountBean> publicAcccountBeans) {
+                    public void onNext(List<ProjectClassifyBean> projectListBeans) {
 //                        publicAcccountBeanList.addAll(publicAcccountBeans);
 //                        // 更新适配器
 //                        publicAccountListAdapter.notifyDataSetChanged();
 
-                        baseView.setPublicAccountTab(publicAcccountBeans);
+                        baseView.setProjectTab(projectListBeans);
                         httpDialog.dismiss();
 
                     }
@@ -84,6 +87,28 @@ public class PublicAccountsPresenter extends BasePresenter<PublicAccountsView> i
         );
     }
 
+
+//    /**
+//     * 获取公众号列表数据
+//     */
+//    public void getPublicList() {
+//        addDisposable(apiServer.getPublicAccountList(), new BaseObserver(baseView) {
+//            @Override
+//            public void onSuccess(Object o) {
+//                publicAcccountCacheList = (List<PublicAcccountBean>) ((BaseModel<List<PublicAcccountBean>>) o).getData();
+//                publicAcccountBeanList.addAll(publicAcccountCacheList);
+//                // 更新适配器
+//                publicAccountListAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                if (baseView != null) {
+//                    baseView.showErrorMsg(msg);
+//                }
+//            }
+//        });
+//    }
 
     /**
      * 列表点击事件

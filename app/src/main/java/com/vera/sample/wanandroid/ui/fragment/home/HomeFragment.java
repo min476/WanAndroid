@@ -13,6 +13,7 @@ import com.vera.sample.wanandroid.ui.activity.webview.WebLinkActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 /**
@@ -26,8 +27,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
 
     @BindView(R.id.banner_viewpager)
     BannerViewPager mViewpager;
+    @BindView(R.id.home_rv)
+    RecyclerView homeRv;
 
-    private List<String> urlList= new ArrayList<>();
+    private List<String> urlList = new ArrayList<>();
 
 
     public static HomeFragment getInstance(boolean param1, String param2) {
@@ -42,7 +45,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
 
     @Override
     protected HomePresenter createPresenter() {
-        return new HomePresenter(this,getActivity());
+        return new HomePresenter(this, getActivity());
     }
 
     @Override
@@ -57,15 +60,18 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
 
     @Override
     protected void initData() {
+        mPresenter.initAdapter(homeRv);
         mPresenter.getBannerList();
+        mPresenter.getFeedArticleList(15);
     }
 
     /**
-     *  设置banner
+     * 设置banner
+     *
      * @param bannerList
      */
     @Override
-    public void setBannerList(List<String> bannerList,List<BannerBean> bannerBeans) {
+    public void setBannerList(List<String> bannerList, List<BannerBean> bannerBeans) {
         mViewpager.initBanner(bannerList, true)
                 .addPageMargin(10, 60)
                 .addPoint(6)
@@ -76,12 +82,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeVie
                 .addBannerListener(new BannerViewPager.OnClickBannerListener() {
                     @Override
                     public void onBannerClick(int i) {
-                        //
-
                         //点击回调
-                        for (int j = 0; j < bannerBeans.size(); j++) {
-                            WebLinkActivity.load(mContext,bannerBeans.get(j).getTitle(),bannerBeans.get(j).getUrl());
-                        }
+                        WebLinkActivity.load(mContext, bannerBeans.get(i).getTitle(), bannerBeans.get(i).getUrl());
 
                     }
                 });

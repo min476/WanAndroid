@@ -1,6 +1,9 @@
 package com.vera.sample.wanandroid.api;
 
 import com.vera.sample.wanandroid.bean.BannerBean;
+import com.vera.sample.wanandroid.bean.FeedArticleListBean;
+import com.vera.sample.wanandroid.bean.project.ProjectClassifyBean;
+import com.vera.sample.wanandroid.bean.project.ProjectListBean;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAccountListBean;
 import com.vera.sample.wanandroid.mvp.BaseModel;
@@ -10,32 +13,9 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiServer {
-    //示例    多种类型请求方式
-
-//    @POST("api/Activity/get_activities?")
-//    Observable<BaseModel<List<>>> getApi1(@Query("time") String requestType);
-
-//    @GET("api/Activity/get_activities?")
-//    Observable<BaseModel<List<>>> getApi1(@Query("time") String requestType);
-
-//    @FormUrlEncoded
-//    @POST("api/Activity/get_activities?")
-//    Observable<BaseModel<List<>>> getApi1(@Field("time") String requestType);
-
-//    @FormUrlEncoded
-//    @POST("api/Activity/get_activities?")
-//    Observable<BaseModel<List<>>> getApi1(@FieldMap HashMap<String, String> params);
-
-//    @Multipart
-//    @POST("api/Activity/get_activities?")
-//    Observable<BaseModel<List<>>> getApi1(@PartMap Map<String, RequestBody> map);
-
-    // 获取历史列表
-//    @GET("article/list/0/json")
-//    Observable<BaseModel<List<HomeBeans.DatasBean>>> getList();
-
 
     /**
      *  获取首页banner
@@ -44,6 +24,18 @@ public interface ApiServer {
      */
     @GET("banner/json")
     Observable<BaseModel<List<BannerBean>>> getBannerList();
+
+
+    /**
+     * 获取feed文章列表
+     * http://wanandroid.com/article/list/20/json
+     *
+     * @param num 页数
+     * @return feed文章列表数据
+     */
+    @GET("article/list/{num}/json")
+    Observable<BaseModel<FeedArticleListBean>> getFeedArticleList(@Path("num") int num);
+
 
     /**
      *  获取公众号列表
@@ -60,6 +52,28 @@ public interface ApiServer {
      */
     @GET("wxarticle/list/{id}/{page}/json")
     Observable<BaseModel<PublicAccountListBean>> getPublicAccountListData(@Path("id") int id, @Path("page") int page);
+
+
+
+    /**
+     * 项目分类
+     * http://www.wanandroid.com/project/tree/json
+     *
+     * @return 项目分类数据
+     */
+    @GET("project/tree/json")
+    Observable<BaseModel<List<ProjectClassifyBean>>> getProjectClassifyData();
+
+    /**
+     * 项目类别数据
+     * http://www.wanandroid.com/project/list/1/json?cid=294
+     *
+     * @param page page num
+     * @param cid second page id
+     * @return 项目类别数据
+     */
+    @GET("project/list/{page}/json")
+    Observable<BaseModel<ProjectListBean>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
 
 
 

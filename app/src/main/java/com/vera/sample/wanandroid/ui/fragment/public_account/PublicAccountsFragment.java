@@ -8,7 +8,7 @@ import com.vera.sample.wanandroid.adapter.PublicPageAdapter;
 import com.vera.sample.wanandroid.app.Constants;
 import com.vera.sample.wanandroid.base.BaseFragment;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
-import com.vera.sample.wanandroid.ui.fragment.public_account.classfy.PublicClassfyFragment;
+import com.vera.sample.wanandroid.ui.fragment.public_account.classfy.PublicClassifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +84,7 @@ public class PublicAccountsFragment extends BaseFragment<PublicAccountsPresenter
 
         // 传递id 与公众号名称到子类frg
         for (int i = 0; i <publicAccountData.size() ; i++) {
-            mFragments.add(PublicClassfyFragment.getInstance(publicAccountData.get(i).getName(),publicAccountData.get(i).getId()));
+            mFragments.add(PublicClassifyFragment.getInstance(publicAccountData.get(i).getName(),publicAccountData.get(i).getId()));
 //            break;
         }
 

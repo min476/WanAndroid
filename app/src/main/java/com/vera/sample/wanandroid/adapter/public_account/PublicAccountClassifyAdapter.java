@@ -1,11 +1,10 @@
-package com.vera.sample.wanandroid.adapter;
+package com.vera.sample.wanandroid.adapter.public_account;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAccountListBean;
-import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAccountListBeans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +17,10 @@ import androidx.annotation.Nullable;
  * Author: Vera
  * Date: 2019/2/26
  */
-public class PublicAccountClassfyAdapter extends BaseQuickAdapter<PublicAccountListBean.DatasBean, BaseViewHolder> {
+public class PublicAccountClassifyAdapter extends BaseQuickAdapter<PublicAccountListBean.DatasBean, BaseViewHolder> {
     List<PublicAccountListBean.DatasBean> listData = new ArrayList<>();
 
-    public PublicAccountClassfyAdapter(int layoutResId, @Nullable List<PublicAccountListBean.DatasBean> data) {
+    public PublicAccountClassifyAdapter(int layoutResId, @Nullable List<PublicAccountListBean.DatasBean> data) {
         super(layoutResId, data);
         this.listData = data;
     }
