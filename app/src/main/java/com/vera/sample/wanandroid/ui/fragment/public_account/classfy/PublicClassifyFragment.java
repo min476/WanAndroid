@@ -41,7 +41,7 @@ public class PublicClassifyFragment extends BaseFragment<PublicClassifyPresenter
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_public_classfy;
+        return R.layout.fragment_public_classify;
     }
 
     @Override

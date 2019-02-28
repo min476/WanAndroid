@@ -6,6 +6,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vera.sample.wanandroid.R;
 import com.vera.sample.wanandroid.adapter.project.ProjectClassifyAdapter;
+import com.vera.sample.wanandroid.adapter.project.ProjectListAdapter;
 import com.vera.sample.wanandroid.adapter.public_account.PublicAccountListAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
 import com.vera.sample.wanandroid.bean.FeedArticleBean;
@@ -34,7 +35,7 @@ public class ProjectPresenter extends BasePresenter<ProjectView> implements Base
 
     private DataManager mDataManager;
 
-    private ProjectClassifyAdapter projectClassifyAdapter;
+    private ProjectListAdapter projectListAdapter;
     private List<ProjectClassifyBean> projectClassifyBeans = new ArrayList<>();
     private HttpDialog httpDialog;
     private List<String> publicAcccountCacheList = new ArrayList<>();;
@@ -48,13 +49,13 @@ public class ProjectPresenter extends BasePresenter<ProjectView> implements Base
     }
 
     public void initAdapter(RecyclerView recyclerView) {
-        projectClassifyAdapter = new ProjectClassifyAdapter(R.layout.item_public_account, projectClassifyBeans);
+        projectListAdapter = new ProjectListAdapter(R.layout.item_public_account, projectClassifyBeans);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(projectClassifyAdapter);
+        recyclerView.setAdapter(projectListAdapter);
         // 设置点击事件
-        projectClassifyAdapter.setOnItemClickListener(this);
+        projectListAdapter.setOnItemClickListener(this);
 
     }
 

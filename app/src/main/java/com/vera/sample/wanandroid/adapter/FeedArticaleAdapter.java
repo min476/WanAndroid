@@ -28,11 +28,11 @@ public class FeedArticaleAdapter extends BaseQuickAdapter<FeedArticleBean, BaseV
     @Override
     protected void convert(BaseViewHolder helper, FeedArticleBean item) {
         // 公众号作者
-        helper.setText(R.id.item_public_account_classfy_title, item.getChapterName());
+        helper.setText(R.id.item_public_account_classify_title, item.getChapterName());
         // 描述
-        helper.setText(R.id.item_public_account_classfy_content, item.getTitle());
+        helper.setText(R.id.item_public_account_classify_content, item.getTitle());
         // 日期
-        helper.setText(R.id.item_public_account_classfy_time, "发布日期：" + item.getNiceDate());
+        helper.setText(R.id.item_public_account_classify_time, "发布日期：" + item.getNiceDate());
         // 不显示背景
         helper.setVisible(R.id.item_public_account_bg, false);
 
@@ -40,9 +40,9 @@ public class FeedArticaleAdapter extends BaseQuickAdapter<FeedArticleBean, BaseV
         if (item.getNiceDate().contains(mContext.getString(R.string.minute))
                 || item.getNiceDate().contains(mContext.getString(R.string.hour))
                 || item.getNiceDate().contains(mContext.getString(R.string.one_day))) {
-            helper.setVisible(R.id.item_public_account_classfy_new, true);
+            helper.setVisible(R.id.item_public_account_classify_new, true);
         } else {
-            helper.setVisible(R.id.item_public_account_classfy_new, false);
+            helper.setVisible(R.id.item_public_account_classify_new, false);
         }
     }
 }

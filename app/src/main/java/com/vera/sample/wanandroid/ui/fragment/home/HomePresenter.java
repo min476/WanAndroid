@@ -41,7 +41,7 @@ public class HomePresenter extends BasePresenter<HomeView> implements BaseQuickA
     }
 
     public void initAdapter(RecyclerView recyclerView) {
-        feedArticaleAdapter = new FeedArticaleAdapter(R.layout.item_public_account_classfy, publicAccountBeans);
+        feedArticaleAdapter = new FeedArticaleAdapter(R.layout.item_public_account_classify, publicAccountBeans);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

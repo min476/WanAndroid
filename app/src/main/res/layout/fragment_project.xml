@@ -9,29 +9,41 @@
 
 
     <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/project_tab_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_cccccc"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        tl:tl_indicator_color="@color/colorMain"
+        tl:tl_indicator_margin_left="2dp"
+        tl:tl_indicator_margin_right="2dp"
+        tl:tl_indicator_style="BLOCK" />
+
+    <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/project_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/h48"
-        android:background="@color/colorWhite"
-        android:paddingLeft="@dimen/h5"
-        android:paddingRight="@dimen/h5"
-        app:tl_indicator_color="@color/colorMain"
-        app:tl_textSelectColor="@color/colorWhite"
-        app:tl_textUnselectColor="@color/color_cccccc"
-        app:tl_divider_color="@color/colorMain"
-        app:tl_divider_width="@dimen/dp_1"
-        app:tl_divider_padding="@dimen/dp_10"
-        app:tl_indicator_corner_radius="@dimen/h5"
-        app:tl_indicator_margin_left="@dimen/h5"
-        app:tl_indicator_margin_right="@dimen/h5"
-        app:tl_indicator_style="BLOCK"
-        android:visibility="invisible" />
+        android:layout_height="50dp"
+        android:background="#EEEEEE"
+        tl:tl_divider_color="#1A000000"
+        tl:tl_divider_padding="10dp"
+        tl:tl_divider_width="1dp"
+        tl:tl_indicator_color="@color/colorMain"
+        tl:tl_indicator_height="1.5dp"
+        tl:tl_indicator_width_equal_title="true"
+        tl:tl_tab_padding="22dp"
+        tl:tl_tab_space_equal="true"
+        tl:tl_textSelectColor="@color/colorMain"
+        tl:tl_textUnselectColor="#66000000"
+        tl:tl_underline_color="#1A000000"
+        tl:tl_underline_height="1dp" />
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/project_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/public_account_tl">
+        android:layout_below="@+id/project_tab_layout">
 
     </androidx.viewpager.widget.ViewPager>
 

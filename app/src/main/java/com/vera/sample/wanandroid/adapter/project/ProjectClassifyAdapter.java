@@ -1,5 +1,8 @@
 package com.vera.sample.wanandroid.adapter.project;
 
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.vera.sample.wanandroid.R;
@@ -18,30 +21,30 @@ import androidx.annotation.Nullable;
  * Author: Vera
  * Date: 2019/2/27
  */
-public class ProjectClassifyAdapter extends BaseQuickAdapter<ProjectClassifyBean, BaseViewHolder> {
-    List<ProjectClassifyBean> listData = new ArrayList<>();
+public class ProjectClassifyAdapter extends BaseQuickAdapter<FeedArticleBean, BaseViewHolder> {
+    List<FeedArticleBean> listData = new ArrayList<>();
 
-    public ProjectClassifyAdapter(int layoutResId, @Nullable List<ProjectClassifyBean> data) {
+    public ProjectClassifyAdapter(int layoutResId, @Nullable List<FeedArticleBean> data) {
         super(layoutResId, data);
         this.listData = data;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ProjectClassifyBean item) {
-//        // 公众号作者
-//        helper.setText(R.id.item_public_account_classfy_title,item.getChapterName());
-//        // 描述
-//        helper.setText(R.id.item_public_account_classfy_content,item.getTitle());
-//        // 日期
-//        helper.setText(R.id.item_public_account_classfy_time,"发布日期："+item.getNiceDate());
-//
-//        // 判断是否是最新的数据 最新数据则显示 NEW
-//        if (item.getNiceDate().contains(mContext.getString(R.string.minute))
-//                || item.getNiceDate().contains(mContext.getString(R.string.hour))
-//                || item.getNiceDate().contains(mContext.getString(R.string.one_day))) {
-//            helper.setVisible(R.id.item_public_account_classfy_new,true);
-//        }else {
-//            helper.setVisible(R.id.item_public_account_classfy_new,false);
-//        }
+    protected void convert(BaseViewHolder helper, FeedArticleBean item) {
+        ImageView projectImg =  helper.getView(R.id.item_project_img); ;
+
+        // 项目标题
+        helper.setText(R.id.item_project_classify_title,item.getTitle());
+        // 项目描述
+        helper.setText(R.id.item_project_classify_content,item.getDesc());
+        // 项目作者及日期
+        helper.setText(R.id.item_project_classify_time,item.getAuthor()+"  "+item.getNiceDate());
+
+        // 加载项目图片
+        Glide.with(mContext).load(item.getEnvelopePic()).into(projectImg);
+
+        // 不显示背景
+        helper.setVisible(R.id.item_project_bg, false);
+
     }
 }

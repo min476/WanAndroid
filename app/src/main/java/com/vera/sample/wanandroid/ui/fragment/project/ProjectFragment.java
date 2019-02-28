@@ -34,7 +34,7 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private PublicPageAdapter publicPageAdapter ;
-    private List<String> publicAcccountTitleCacheList = new ArrayList<>();;
+    private List<String> ProjectTitleCacheList = new ArrayList<>();;
 
 
 
@@ -86,9 +86,9 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
         // 公众号的分类tab
         for (int i = 0; i < projectClassifyData.size(); i++) {
-            publicAcccountTitleCacheList.add(projectClassifyData.get(i).getName());
+            ProjectTitleCacheList.add(projectClassifyData.get(i).getName());
         }
-        publicPageAdapter = new PublicPageAdapter(getFragmentManager(),mFragments,publicAcccountTitleCacheList);
+        publicPageAdapter = new PublicPageAdapter(getFragmentManager(),mFragments,ProjectTitleCacheList);
         projectVp.setAdapter(publicPageAdapter);
 
         // 设置 ViewPager

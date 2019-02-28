@@ -1,5 +1,7 @@
 package com.vera.sample.wanandroid.adapter.public_account;
 
+import android.widget.TextView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.vera.sample.wanandroid.R;
@@ -28,19 +30,33 @@ public class PublicAccountClassifyAdapter extends BaseQuickAdapter<PublicAccount
     @Override
     protected void convert(BaseViewHolder helper, PublicAccountListBean.DatasBean item) {
         // 公众号作者
-        helper.setText(R.id.item_public_account_classfy_title,item.getChapterName());
-        // 描述
-        helper.setText(R.id.item_public_account_classfy_content,item.getTitle());
+        helper.setText(R.id.item_public_account_classify_title, item.getChapterName());
+
         // 日期
-        helper.setText(R.id.item_public_account_classfy_time,"发布日期："+item.getNiceDate());
+        helper.setText(R.id.item_public_account_classify_time, "发布日期：" + item.getNiceDate());
 
         // 判断是否是最新的数据 最新数据则显示 NEW
         if (item.getNiceDate().contains(mContext.getString(R.string.minute))
                 || item.getNiceDate().contains(mContext.getString(R.string.hour))
                 || item.getNiceDate().contains(mContext.getString(R.string.one_day))) {
-            helper.setVisible(R.id.item_public_account_classfy_new,true);
-        }else {
-            helper.setVisible(R.id.item_public_account_classfy_new,false);
+            helper.setVisible(R.id.item_public_account_classify_new, true);
+        } else {
+            helper.setVisible(R.id.item_public_account_classify_new, false);
         }
+
+
+        String str = item.getTitle();
+        helper.setText(R.id.item_public_account_classify_content,replaceDquo(str));
+
+    }
+
+    /**
+     *  替换特殊字符
+     * @param str
+     * @return
+     */
+    private String replaceDquo(String str) {
+        String temp = str.replaceAll("&ldquo;","\"");
+        return temp.replaceAll("&rdquo;","\"");
     }
 }

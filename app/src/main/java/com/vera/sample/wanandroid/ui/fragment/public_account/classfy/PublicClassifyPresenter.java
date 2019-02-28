@@ -46,7 +46,7 @@ public class PublicClassifyPresenter extends BasePresenter<PublicClassifyView> i
     }
 
     public void initAdapter(RecyclerView recyclerView) {
-        publicAccountClassifyAdapter = new PublicAccountClassifyAdapter(R.layout.item_public_account_classfy, publicAccountListBeans);
+        publicAccountClassifyAdapter = new PublicAccountClassifyAdapter(R.layout.item_public_account_classify, publicAccountListBeans);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

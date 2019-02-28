@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/allWrap"
+    android:layout_marginTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv1"
+        style="@style/HwWm"
+        android:layout_margin="5dp"
+        android:background="@color/color_d7d7d7"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6px"
+        app:cardUseCompatPadding="false">
+
+        <ImageView
+            android:id="@+id/item_project_bg"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:background="@mipmap/public_item_bg" />
+
+
+        <!--android:background="@color/color_d7d7d7"-->
+
+        <RelativeLayout
+            style="@style/allWrap"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:id="@+id/item_project_img"
+                android:layout_width="142dp"
+                android:layout_height="175dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_temp" />
+
+            <TextView
+                android:id="@+id/item_project_classify_title"
+                style="@style/allWrap"
+                android:layout_marginLeft="@dimen/h15"
+                android:layout_marginTop="@dimen/h15"
+                android:layout_toRightOf="@id/item_project_img"
+                android:background="@drawable/tag_border"
+                android:padding="4dp"
+                android:text="项目标题"
+                android:textColor="@color/colorMain"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_public_account_classify_new"
+                style="@style/allWrap"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/h15"
+                android:layout_toRightOf="@id/item_public_account_img"
+                android:text="NEW"
+                android:textColor="@color/colorMain"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/item_project_classify_content"
+                style="@style/allWrap"
+                android:layout_below="@id/item_project_classify_title"
+                android:layout_marginLeft="@dimen/h15"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/item_project_img"
+                android:ellipsize="end"
+                android:lines="4"
+                android:text="文章内容"
+                android:textSize="15sp"
+                />
+
+
+            <TextView
+                android:id="@+id/item_project_classify_time"
+                style="@style/allWrap"
+                android:layout_below="@+id/item_project_classify_content"
+                android:layout_marginTop="@dimen/h15"
+                android:layout_marginLeft="@dimen/h15"
+                android:text="发布时间"
+                android:layout_toRightOf="@id/item_project_img"
+                android:textSize="15sp" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -5,9 +5,10 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vera.sample.wanandroid.R;
-import com.vera.sample.wanandroid.adapter.public_account.PublicAccountClassifyAdapter;
+import com.vera.sample.wanandroid.adapter.project.ProjectClassifyAdapter;
 import com.vera.sample.wanandroid.app.DataManager;
-import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAccountListBean;
+import com.vera.sample.wanandroid.bean.FeedArticleBean;
+import com.vera.sample.wanandroid.bean.project.ProjectListBean;
 import com.vera.sample.wanandroid.custom.HttpDialog;
 import com.vera.sample.wanandroid.mvp.BaseObservers;
 import com.vera.sample.wanandroid.mvp.BasePresenter;
@@ -20,6 +21,7 @@ import java.util.List;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * File descripition: 项目子分类
@@ -32,11 +34,9 @@ public class ProjectClassifyPresenter extends BasePresenter<ProjectClassifyView>
 
     private DataManager mDataManager;
 
-    private PublicAccountClassifyAdapter publicAccountClassifyAdapter;
-    private List<PublicAccountListBean.DatasBean> publicAccountListBeans = new ArrayList<>();
+    private ProjectClassifyAdapter projectClassifyAdapter;
+    private List<FeedArticleBean> projectListBeans = new ArrayList<>();
     private HttpDialog httpDialog;
-    private List<String> publicAcccountCacheList = new ArrayList<>();
-
 
 
     public ProjectClassifyPresenter(ProjectClassifyView baseView, Activity activity) {
@@ -46,34 +46,41 @@ public class ProjectClassifyPresenter extends BasePresenter<ProjectClassifyView>
     }
 
     public void initAdapter(RecyclerView recyclerView) {
-        publicAccountClassifyAdapter = new PublicAccountClassifyAdapter(R.layout.item_public_account_classfy, publicAccountListBeans);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        projectClassifyAdapter = new ProjectClassifyAdapter(R.layout.item_project_classifys, projectListBeans);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager =
+                new StaggeredGridLayoutManager(2,
+                        StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(publicAccountClassifyAdapter);
+        recyclerView.setAdapter(projectClassifyAdapter);
         // 设置点击事件
-        publicAccountClassifyAdapter.setOnItemClickListener(this);
+        projectClassifyAdapter.setOnItemClickListener(this);
 
     }
 
     /**
-     *  获取公众号子类列表
+     * 获取公众号子类列表
      */
-    public void getPublicClassfyList(int id,int page) {
+    public void getPublicClassifyList(int page, int cid) {
         httpDialog.show();
-        addSubscribe(apiServer.getPublicAccountListData(id,page)
+        addSubscribe(apiServer.getProjectListData(page, cid)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
-                .subscribeWith(new BaseObservers<PublicAccountListBean>(baseView) {
+                .subscribeWith(new BaseObservers<ProjectListBean>(baseView) {
                     @Override
-                    public void onNext(PublicAccountListBean publicAcccountBeans) {
-                        if(publicAcccountBeans!=null && publicAcccountBeans.getDatas().size()>0){
-                            publicAccountListBeans.addAll(publicAcccountBeans.getDatas());
+                    public void onNext(ProjectListBean publicAcccountBeans) {
+                        if (publicAcccountBeans != null && publicAcccountBeans.getDatas().size() > 0) {
+                            projectListBeans.addAll(publicAcccountBeans.getDatas());
                             // 更新适配器
-                            publicAccountClassifyAdapter.notifyDataSetChanged();
+                            projectClassifyAdapter.notifyDataSetChanged();
                             httpDialog.dismiss();
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
@@ -95,7 +102,7 @@ public class ProjectClassifyPresenter extends BasePresenter<ProjectClassifyView>
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         // 跳转到对应的h5界面
-        WebLinkActivity.load(mActivity, publicAccountClassifyAdapter.getItem(position).getTitle(), publicAccountClassifyAdapter.getItem(position).getLink());
+        WebLinkActivity.load(mActivity, projectClassifyAdapter.getItem(position).getTitle(), projectClassifyAdapter.getItem(position).getLink());
 //        Toast.makeText(mActivity, publicAccountClassifyAdapter.getItem(position).getAuthor(), Toast.LENGTH_LONG).show();
     }
 

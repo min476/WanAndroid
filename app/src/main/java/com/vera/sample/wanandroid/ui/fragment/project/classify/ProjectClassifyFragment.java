@@ -18,7 +18,7 @@ import butterknife.BindView;
 
 public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresenter> implements ProjectClassifyView {
     private String mTitle;
-    private int publicId;
+    private int cid;
     private int page= 1;
 
     @BindView(R.id.frag_public_accout_rv)
@@ -30,7 +30,7 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
     public static ProjectClassifyFragment getInstance(String title, int id) {//,int id
         ProjectClassifyFragment sf = new ProjectClassifyFragment();
         sf.mTitle = title;
-        sf.publicId = id;
+        sf.cid = id;
         return sf;
     }
 
@@ -41,7 +41,7 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_public_classfy;
+        return R.layout.fragment_public_classify;
     }
 
     @Override
@@ -50,11 +50,10 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
 
     @Override
     protected void initData() {
-
         // 初始化刷新
         initRefresh(smartRefreshLayout);
         mPresenter.initAdapter(recyclerView);
-        mPresenter.getPublicClassfyList(publicId,page);
+        mPresenter.getPublicClassifyList(page,cid);
 
     }
 
@@ -64,7 +63,7 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
     @Override
     protected void refreshData() {
         page = 1;
-        mPresenter.getPublicClassfyList(publicId,page);
+        mPresenter.getPublicClassifyList(page,cid);
     }
 
     /**
@@ -73,6 +72,6 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
     @Override
     protected void loadMoreData() {
         page++;
-        mPresenter.getPublicClassfyList(publicId,page);
+        mPresenter.getPublicClassifyList(page,cid);
     }
 }
