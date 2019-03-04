@@ -6,6 +6,7 @@
     <dimen name="line">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="h5">5dp</dimen>
+    <dimen name="h6">6dp</dimen>
     <dimen name="h9">9.0sp</dimen>
     <dimen name="h10">10.0sp</dimen>
     <dimen name="h11">11.0sp</dimen>

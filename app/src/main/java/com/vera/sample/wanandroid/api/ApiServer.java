@@ -2,6 +2,7 @@ package com.vera.sample.wanandroid.api;
 
 import com.vera.sample.wanandroid.bean.BannerBean;
 import com.vera.sample.wanandroid.bean.FeedArticleListBean;
+import com.vera.sample.wanandroid.bean.navigation.NavigationListBean;
 import com.vera.sample.wanandroid.bean.project.ProjectClassifyBean;
 import com.vera.sample.wanandroid.bean.project.ProjectListBean;
 import com.vera.sample.wanandroid.bean.publicaccount_bean.PublicAcccountBean;
@@ -54,7 +55,6 @@ public interface ApiServer {
     Observable<BaseModel<PublicAccountListBean>> getPublicAccountListData(@Path("id") int id, @Path("page") int page);
 
 
-
     /**
      * 项目分类
      * http://www.wanandroid.com/project/tree/json
@@ -63,6 +63,7 @@ public interface ApiServer {
      */
     @GET("project/tree/json")
     Observable<BaseModel<List<ProjectClassifyBean>>> getProjectClassifyData();
+
 
     /**
      * 项目类别数据
@@ -76,7 +77,14 @@ public interface ApiServer {
     Observable<BaseModel<ProjectListBean>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
 
 
-
+    /**
+     * 导航
+     * http://www.wanandroid.com/navi/json
+     *
+     * @return 导航数据
+     */
+    @GET("navi/json")
+    Observable<BaseModel<List<NavigationListBean>>> getNavigationListData();
 
 
 
